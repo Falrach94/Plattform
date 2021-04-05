@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerArchitecture\ServerKernel.csproj" />
+    <ProjectReference Include="..\ServerKernel\ServerKernel.csproj" />
   </ItemGroup>
 
 </Project>

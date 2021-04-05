@@ -1,5 +1,4 @@
 ﻿
-using LogUtils;
 using PatternUtils.Module_Framework;
 using ServerKernel;
 using ServerKernel.Connections;

@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Utilities\LogUtils\LogUtils.csproj" />
     <ProjectReference Include="..\..\Utilities\MessageUtils\MessageUtils.csproj" />
     <ProjectReference Include="..\..\Utilities\NetworkUtils\NetworkUtils.csproj" />
     <ProjectReference Include="..\..\Utilities\PatternUtils\PatternUtils.csproj" />

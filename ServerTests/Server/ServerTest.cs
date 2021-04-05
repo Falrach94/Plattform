@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PatternUtils.Module_Framework.Data;
+using PatternUtils.Module_Framework.Extensions;
 using SererTests.TestUtilities;
+using ServerKernel.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +17,7 @@ namespace ServerTests.Server
         [TestMethod]
         public void TestServerBasics()
         {
+            const int PORT_INIT = 4234;
             const int PORT = 1234;
 
             ServerKernel.Server server = new();
@@ -31,10 +35,50 @@ namespace ServerTests.Server
             CollectionAssert.AreEquivalent(new[] { "Connections", "Messaging", "Control", "Network"}, 
                                             server.ModuleManager.Modules.Select(m => m.Info.Name).ToArray());
 
-           // TestUtils.AssertTask(server.StartAsync(PORT));
+            var networkModule = server.ModuleManager.GetModuleByName("Network");
+            var controlModule = server.ModuleManager.GetModuleByName("Control");
+            var messagingModule = server.ModuleManager.GetModuleByName("Messaging");
+            var connectionsModule = server.ModuleManager.GetModuleByName("Connections");
+
+            var network = TestUtils.AssertTask(server.ModuleManager.GetInterfaceAsync<INetwork>(null));
+
+            Assert.AreEqual(ModuleState.Stopped, networkModule.State);
+            Assert.AreEqual(ModuleState.Stopped, controlModule.State);
+            Assert.AreEqual(ModuleState.Stopped, messagingModule.State);
+            Assert.AreEqual(ModuleState.Stopped, connectionsModule.State);
+
+            // assert modules can be started
+            TestUtils.AssertTask(server.StartAsync(PORT_INIT));
+
+            Assert.AreEqual(ModuleState.Running, networkModule.State);
+            Assert.AreEqual(ModuleState.Running, controlModule.State);
+            Assert.AreEqual(ModuleState.Running, messagingModule.State);
+            Assert.AreEqual(ModuleState.Running, connectionsModule.State);
+
+            // assert correct port is used
+            Assert.AreEqual(PORT_INIT, network.Port);
+
+            // assert modules can be stopped
+            TestUtils.AssertTask(server.StopAsync());
+
+            Assert.AreEqual(ModuleState.Stopped, networkModule.State);
+            Assert.AreEqual(ModuleState.Stopped, controlModule.State);
+            Assert.AreEqual(ModuleState.Stopped, messagingModule.State);
+            Assert.AreEqual(ModuleState.Stopped, connectionsModule.State);
+
+            // assert port can be changed
+            TestUtils.AssertTask(server.StartAsync(PORT));
+
+            Assert.AreEqual(ModuleState.Running, networkModule.State);
+            Assert.AreEqual(ModuleState.Running, controlModule.State);
+            Assert.AreEqual(ModuleState.Running, messagingModule.State);
+            Assert.AreEqual(ModuleState.Running, connectionsModule.State);
+
+            Assert.AreEqual(PORT, network.Port);
 
 
-           // server.ModuleManager.assert
+
+            // server.ModuleManager.assert
 
         }
     }

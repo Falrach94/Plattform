@@ -28,9 +28,9 @@ namespace ServerKernel.Network
         {
         }
 
-        public int TargetPort { get; set; }
+        public int TargetPort { get; set; } = DEFAULT_PORT;
 
-        public int Port { get; } = DEFAULT_PORT;
+        public int Port { get; private set; } = -1;
 
         protected override void DefineModule(ModuleBuilder builder)
         {
@@ -52,6 +52,7 @@ namespace ServerKernel.Network
         protected override Task StartAsync()
         {
             _listener.StartListeningForConnections(TargetPort);
+            Port = TargetPort;
             return Task.CompletedTask;
         }
 
