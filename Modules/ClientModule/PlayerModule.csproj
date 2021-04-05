@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{674D52C2-8840-4282-8CA6-8B66AD18F8E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ClientModule</RootNamespace>
+    <AssemblyName>ClientModule</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LinuxTEst|AnyCPU'">
+    <OutputPath>bin\LinuxTEst\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Misc\App.config" />
+    <None Include="Misc\ClassDiagram.cd" />
+    <None Include="Misc\NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Misc\packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Player.cs" />
+    <Compile Include="Data\PlayerModuleData.cs" />
+    <Compile Include="Exceptions\PlayerRemovalException.cs" />
+    <Compile Include="Interface\IPlayerModule.cs" />
+    <Compile Include="Interface\IPlayerStorage.cs" />
+    <Compile Include="Exceptions\PlayerNotFoundException.cs" />
+    <Compile Include="Logic\PlayerLogic.cs" />
+    <Compile Include="Messages\PlayerMessageFactory.cs" />
+    <Compile Include="Data\ConnectionPlayerInfo.cs" />
+    <Compile Include="Messages\PlayerMessageHandler.cs" />
+    <Compile Include="PlayerModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.5\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlModule\ControlModule.csproj">
+      <Project>{4EC0FA6C-0CD2-473A-BAF1-6D144D9EC38F}</Project>
+      <Name>ControlModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiagnosticsInterfaces\DiagnosticsInterfaces.csproj">
+      <Project>{f1dba5db-7839-4b6c-989e-3e134f850bb3}</Project>
+      <Name>DiagnosticsInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiagnosticsModule\DiagnosticsModule.csproj">
+      <Project>{5F779437-D306-4715-8CA7-A10FBD71EC55}</Project>
+      <Name>DiagnosticsModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServerData\SharedData.csproj">
+      <Project>{cd1eedc5-7b80-40fa-89a5-398cc98165a5}</Project>
+      <Name>SharedData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServer\ServerArchitecture.csproj">
+      <Project>{85122cb3-0d89-40b1-ad4b-63f5716ea5df}</Project>
+      <Name>ServerArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogUtils\LogUtils.csproj">
+      <Project>{6e745a30-6b84-4877-9ca0-31530af4cd55}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageUtility\MessageUtilities.csproj">
+      <Project>{E489DE0B-217F-4E8F-A7BD-424AD845CA88}</Project>
+      <Name>MessageUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerImplementation\BasicImplementation.csproj">
+      <Project>{A6A9B15D-8C3D-4767-9E11-A03D5A8CA9AD}</Project>
+      <Name>BasicImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextInterfaceModule\TextInterfaceModule.csproj">
+      <Project>{89f78a6e-87e8-440d-8b7a-58087fba7c1a}</Project>
+      <Name>TextInterfaceModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextParser\TextParserUtils.csproj">
+      <Project>{7B417A40-3C37-4846-9E66-521BA82B79CA}</Project>
+      <Name>TextParserUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

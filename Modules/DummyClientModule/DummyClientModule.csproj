@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CEB9080F-FE56-47B6-9644-43E40FF896E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DummyClientModule</RootNamespace>
+    <AssemblyName>DummyClientModule</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LinuxTEst|AnyCPU'">
+    <OutputPath>bin\LinuxTEst\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\LobbyMessageHandler.cs" />
+    <Compile Include="Client\DummyClient.cs" />
+    <Compile Include="Client\ChatMessageHandler.cs" />
+    <Compile Include="Client\PlayerMessageHandler.cs" />
+    <Compile Include="DummyClientData.cs" />
+    <Compile Include="DummyClientLogic.cs" />
+    <Compile Include="DummyClientMessageHandler.cs" />
+    <Compile Include="DummyClientModule.cs" />
+    <Compile Include="DummyEnum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServerClient\ServerClient\MinimalClient.csproj">
+      <Project>{241d9e2c-ada1-4c88-ad85-7c2e95fd9f66}</Project>
+      <Name>MinimalClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiagnosticsInterfaces\DiagnosticsInterfaces.csproj">
+      <Project>{f1dba5db-7839-4b6c-989e-3e134f850bb3}</Project>
+      <Name>DiagnosticsInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServerData\SharedData.csproj">
+      <Project>{cd1eedc5-7b80-40fa-89a5-398cc98165a5}</Project>
+      <Name>SharedData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServer\ServerArchitecture.csproj">
+      <Project>{85122CB3-0D89-40B1-AD4B-63F5716EA5DF}</Project>
+      <Name>ServerArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogModules\LogModule.csproj">
+      <Project>{43459E47-7193-4E83-AD09-BDCC4BECABB6}</Project>
+      <Name>LogModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogUtils\LogUtils.csproj">
+      <Project>{6E745A30-6B84-4877-9CA0-31530AF4CD55}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageUtility\MessageUtilities.csproj">
+      <Project>{E489DE0B-217F-4E8F-A7BD-424AD845CA88}</Project>
+      <Name>MessageUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerImplementation\BasicImplementation.csproj">
+      <Project>{A6A9B15D-8C3D-4767-9E11-A03D5A8CA9AD}</Project>
+      <Name>BasicImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextInterfaceModule\TextInterfaceModule.csproj">
+      <Project>{89F78A6E-87E8-440D-8B7A-58087FBA7C1A}</Project>
+      <Name>TextInterfaceModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextParser\TextParserUtils.csproj">
+      <Project>{7B417A40-3C37-4846-9E66-521BA82B79CA}</Project>
+      <Name>TextParserUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ServerClientArchitecture, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ServerClient\ServerClient\bin\Debug\ServerClientArchitecture.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

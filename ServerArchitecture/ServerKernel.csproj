@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Connection Management\**" />
+    <Compile Remove="Data Objects\**" />
+    <EmbeddedResource Remove="Connection Management\**" />
+    <EmbeddedResource Remove="Data Objects\**" />
+    <None Remove="Connection Management\**" />
+    <None Remove="Data Objects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utilities\LogUtils\LogUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\MessageUtils\MessageUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\NetworkUtils\NetworkUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\PatternUtils\PatternUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\ServerUtils\ServerUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\SyncUtils\SyncUtils.csproj" />
+  </ItemGroup>
+
+</Project>

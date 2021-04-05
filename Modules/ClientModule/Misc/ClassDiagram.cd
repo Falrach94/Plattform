@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameServer.PlayerLogic">
+    <Position X="3.25" Y="6.75" Width="2.25" />
+    <Members>
+      <Method Name="BroadcastMessage" Hidden="true" />
+      <Property Name="IModuleLogic.Data" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIBAAAQAAABAACAAAAQAAEBAAAAgIgwAAAAA=</HashCode>
+      <FileName>Logic\PlayerLogic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameServer.PlayerMessageHandler">
+    <Position X="0.5" Y="6.75" Width="2.25" />
+    <Members>
+      <Property Name="IModuleMessageHandler.Data" Hidden="true" />
+      <Property Name="IModuleMessageHandler.Logic" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQJAAAAAAAAEACAAAAAAEABAKACAAAwAAAAA=</HashCode>
+      <FileName>Messages\PlayerMessageHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameServer.PlayerModuleData">
+    <Position X="6" Y="6.75" Width="2.25" />
+    <NestedTypes>
+      <Enum Name="GameServer.PlayerModuleData.DataState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\PlayerModuleData.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgIEAACDAAAAAABAGCAAAAQAgAAAAAAAADAAAAgA=</HashCode>
+      <FileName>Data\PlayerModuleData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ClientModule.Data.Player">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAEAEEAAAAAAQAAAQAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameServer.PlayerModule">
+    <Position X="3.25" Y="3" Width="2.25" />
+    <Members>
+      <Property Name="IModule.Data" Hidden="true" />
+      <Property Name="IModule.Logic" Hidden="true" />
+      <Property Name="IModule.MessageHandler" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Data" Type="GameServer.PlayerModuleData" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.688" Y="5.776" />
+        <Point X="4.688" Y="5.957" />
+        <Point X="7.25" Y="5.957" />
+        <Point X="7.25" Y="6.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.673" Y="0.243" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Logic" Type="GameServer.PlayerLogic">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.665" Y="0.243" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="MessageHandler" Type="GameServer.PlayerMessageHandler" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.625" Y="5.776" />
+        <Point X="3.625" Y="5.974" />
+        <Point X="1.625" Y="5.974" />
+        <Point X="1.625" Y="6.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.382" Y="0.26" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAIAAAQABQAgABIIACACAgAAAAA=</HashCode>
+      <FileName>PlayerModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Data" />
+      <Property Name="Logic" />
+      <Property Name="MessageHandler" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ClientModule.Interface.IPlayerModule">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IPlayerModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PlayerStorage" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ClientModule.Interface.IPlayerStorage">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACDAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IPlayerStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Players" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

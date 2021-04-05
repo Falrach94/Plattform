@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Generic server model&#xD;&#xA;&#xD;&#xA;basic server implementation supports connecting clients&#xD;&#xA;&#xD;&#xA;additional functionalities can be added by implementing and adding modules">
+    <Position X="1.458" Y="6.259" Height="1.992" Width="3.575" />
+  </Comment>
+  <Comment CommentText="Basic Modules:&#xD;&#xA;&#xD;&#xA;Network&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IRawMessageReceiver -&gt; RawMessageBlock&#xD;&#xA;	- IEndpointManager -&gt; EndpointConnectionChanged&#xD;&#xA;&#xD;&#xA;Messaging:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IRawMessageReceiver &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IMessageHandler&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- BroadcastMessenger&#xD;&#xA;&#xD;&#xA;Protocoll&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	-IConnectionProtocolHandler&#xD;&#xA;&#xD;&#xA;Connections:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IEndpointManager &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IConnectionProcessor&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IConnectionManager&#xD;&#xA;&#xD;&#xA;">
+    <Position X="0.715" Y="0.5" Height="5.083" Width="5.148" />
+  </Comment>
+  <Class Name="ServerArchitecture.Framework.NetworkModule">
+    <Position X="10.75" Y="7.75" Width="2.25" />
+    <Members>
+      <Method Name="DefineModule" Hidden="true" />
+      <Method Name="InitializeAsync" Hidden="true" />
+      <Method Name="NetworkModule" Hidden="true" />
+      <Method Name="UninitializeAsync" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAGAAgAAAgAgQAACAAAAAAAAQAAIAAAAAA=</HashCode>
+      <FileName>Network\NetworkModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_endpointManager" />
+      <Field Name="_listener" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameServer.Server">
+    <Position X="2" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACBAAAAAAAIAAAAIAAAAAAAAAAASAAAAA=</HashCode>
+      <FileName>depr\Server.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ServerArchitecture.MessagingModule">
+    <Position X="17" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAEAAAAAAgAgAAAIAAAgAAAAQAAIAAAAQQ=</HashCode>
+      <FileName>Messaging\MessagingModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_messageProcessor" />
+      <Field Name="_messenger" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ServerArchitecture.Connections.ConnectionModule">
+    <Position X="21.75" Y="7.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EEACAAAAAAAEAAAAAAgAAABAAAAgAAAAEQAAIAAAAAA=</HashCode>
+      <FileName>Connections\ConnectionModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_connectionManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ServerArchitecture.ConnectionManager" Collapsed="true">
+    <Position X="21.5" Y="3.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAIAIAAAAAAACAAAgAgAAAAAAAEAAAQAgCYAAABAA=</HashCode>
+      <FileName>Connections\manager\ConnectionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ServerKernel.Protocol.ProtocolModule">
+    <Position X="26.5" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAEAAAAAAgAAAAAAAAAAAAAAQQAIAAAAAA=</HashCode>
+      <FileName>Protocol\ProtocolModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_procotoll" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ServerKernel.Protocol.ConnectionProtocol">
+    <Position X="26.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAAAAAAAAAAAAAAAAEAABAAACAAAAAAAAAAIA=</HashCode>
+      <FileName>Protocol\ConnectionProtocol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ServerUtils.EndpointManager">
+    <Position X="8.5" Y="3.75" Width="3" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkUtils.Tcp_Client_Listener.TcpClientListener">
+    <Position X="11.75" Y="3.75" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MessageUtils.MessageProcessor">
+    <Position X="15.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MessageUtils.Messenger.BroadcastMessenger">
+    <Position X="18.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ServerArchitecture.Network.INetwork">
+    <Position X="8.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Network\INetwork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChatModule.Logic.ChatModuleLogic">
+    <Position X="3" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAACAAAIBAAEQAAAiAAAAAAAAAAEBAgAAAAgwAAAAA=</HashCode>
+      <FileName>Logic\ChatModuleLogic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatModule.Data.ChatModuleData">
+    <Position X="7.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAGAgIAAAAAAAAAAAAAQAAEAAAACAAAAIAAAAAAAAAg=</HashCode>
+      <FileName>Data\ChatModuleData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatModule.Message_Handling.ChatModuleMessageHandler">
+    <Position X="5.25" Y="6.75" Width="2" />
+    <Members>
+      <Property Name="IModuleMessageHandler.Data" Hidden="true" />
+      <Property Name="IModuleMessageHandler.Logic" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQBAAAAAAAAAAAAAAAAAEABAIACAAAgAAAAA=</HashCode>
+      <FileName>Message Handling\ChatModuleMessageHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatModule.ChatRoom">
+    <Position X="9.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAEAAAAAAAAAQAAAAAAAAAIAAAACAAAAA=</HashCode>
+      <FileName>Data\ChatRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatModule.ChatModule">
+    <Position X="5.25" Y="4.25" Width="2" />
+    <Members>
+      <Property Name="IModule.Data" Hidden="true" />
+      <Property Name="IModule.Logic" Hidden="true" />
+      <Property Name="IModule.MessageHandler" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Logic" Type="ChatModule.Logic.ChatModuleLogic">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.723" Y="0.402" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Data" Type="ChatModule.Data.ChatModuleData">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.673" Y="0.285" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="MessageHandler" Type="ChatModule.Message_Handling.ChatModuleMessageHandler">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.348" Y="0.318" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAQAAQAgABAAACACAgAAAAA=</HashCode>
+      <FileName>ChatModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Logic" />
+      <Property Name="Data" />
+      <Property Name="MessageHandler" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ChatModule.ChatMessage">
+    <Position X="9.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACAAIAAA=</HashCode>
+      <FileName>Data\ChatMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ChatModule.IChatControl">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAACAAAAAAAEAAAAiAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\IChatControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ChatModule.IChatModule">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IChatModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ChatControl" />
+      <Property Name="ChatStorage" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ChatModule.IChatStorage">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IChatStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ChatRoomDic" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="GameServer.IModule" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

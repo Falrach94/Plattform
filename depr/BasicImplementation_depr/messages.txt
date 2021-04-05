@@ -1,0 +1,101 @@
+Module: Player
+
+   Outgoing:
+
+   Incoming:
+
+	message: AddPlayer
+	type: System.String
+	 (param 1) Name
+
+
+	message: RemovePlayer
+	type: System.Int32
+	 (param 1) Player Id
+
+
+	message: RenamePlayer
+	type: System.Tuple`2[System.Int32,System.String]
+	 (param 1) Player Id
+	 (param 2) New Name
+
+
+
+
+Module: Chat
+
+   Outgoing:
+
+   Incoming:
+
+	message: CreateChat
+	type: System.String
+	 (param 1) Name
+
+
+	message: JoinChat
+	type: System.Int32
+	 (param 1) Chat Id
+
+
+	message: LeaveChat
+	type: System.Int32
+	 (param 1) Chat Id
+
+
+	message: RemoveChat
+	type: System.Int32
+	 (param 1) Chat Id
+
+
+	message: SendMessage
+	type: System.Tuple`3[System.Int32,System.String,System.String]
+	 (param 1) Chat Id
+	 (param 2) Signature
+	 (param 3) Message
+
+
+
+
+Module: Lobby
+
+   Outgoing:
+
+	message: Lobbies
+	type: System.Tuple`3[System.Int32,System.Int32,System.Int32[]][]
+	 (param 1) Lobby Id
+	 (param 2) Host Id
+	 (param 3) Player Ids
+
+
+	message: PlayerJoinedLobby
+	type: System.Tuple`2[System.Int32,System.Int32]
+	 (param 1) Player Id
+	 (param 2) Lobby Id
+
+
+	message: LobbyCreated
+	type: System.Tuple`3[System.Int32,System.Int32,System.Int32[]]
+	 (param 1) Lobby Id
+	 (param 2) Host Id
+	 (param 3) Player Ids
+
+
+	message: PlayerLeftLobby
+	type: System.Tuple`2[System.Int32,System.Int32]
+	 (param 1) Player Id
+	 (param 2) Lobby Id
+
+
+	message: LobbyClosed
+	type: System.Int32
+	 (param 1) Lobby Id
+
+
+   Incoming:
+
+	message: Synchronized
+
+
+
+

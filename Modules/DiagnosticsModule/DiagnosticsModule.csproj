@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F779437-D306-4715-8CA7-A10FBD71EC55}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DiagnosticsModule</RootNamespace>
+    <AssemblyName>DiagnosticsModule</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LinuxTEst|AnyCPU'">
+    <OutputPath>bin\LinuxTEst\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DiagnosticsData.cs" />
+    <Compile Include="DiagnosticsLogic.cs" />
+    <Compile Include="DiagnosticsMessageHandler.cs" />
+    <Compile Include="DiagnosticsModule.cs" />
+    <Compile Include="Interface\IDiagnosticsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiagnosticsInterfaces\DiagnosticsInterfaces.csproj">
+      <Project>{f1dba5db-7839-4b6c-989e-3e134f850bb3}</Project>
+      <Name>DiagnosticsInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServerData\SharedData.csproj">
+      <Project>{CD1EEDC5-7B80-40FA-89A5-398CC98165A5}</Project>
+      <Name>SharedData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServer\ServerArchitecture.csproj">
+      <Project>{85122cb3-0d89-40b1-ad4b-63f5716ea5df}</Project>
+      <Name>ServerArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogUtils\LogUtils.csproj">
+      <Project>{6E745A30-6B84-4877-9CA0-31530AF4CD55}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageUtility\MessageUtilities.csproj">
+      <Project>{e489de0b-217f-4e8f-a7bd-424ad845ca88}</Project>
+      <Name>MessageUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerImplementation\BasicImplementation.csproj">
+      <Project>{a6a9b15d-8c3d-4767-9e11-a03d5a8ca9ad}</Project>
+      <Name>BasicImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextInterfaceModule\TextInterfaceModule.csproj">
+      <Project>{89F78A6E-87E8-440D-8B7A-58087FBA7C1A}</Project>
+      <Name>TextInterfaceModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextParser\TextParserUtils.csproj">
+      <Project>{7b417a40-3c37-4846-9e66-521ba82b79ca}</Project>
+      <Name>TextParserUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

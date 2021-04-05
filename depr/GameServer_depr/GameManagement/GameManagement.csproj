@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA0A999D-8522-4D01-92FB-86CA7FB0635C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LobbyModule</RootNamespace>
+    <AssemblyName>LobbyModule</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LinuxTEst|AnyCPU'">
+    <OutputPath>bin\LinuxTEst\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Game Interface\ClassDiagram.cd" />
+    <None Include="GameManagementModule\ClassDiagram.cd" />
+    <None Include="GameStorageModule\ClassDiagram.cd" />
+    <None Include="LobbyModule\ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Game Interface\IBackendCreator.cs" />
+    <Compile Include="Game Interface\IGameResult.cs" />
+    <Compile Include="GameManagementModule\Data\GameConnection.cs" />
+    <Compile Include="GameManagementModule\Data\GameInstance.cs" />
+    <Compile Include="GameManagementModule\Data\GameModuleData.cs" />
+    <Compile Include="GameManagementModule\GameManagementClientMessageType.cs" />
+    <Compile Include="GameManagementModule\GameManagementLogic.cs" />
+    <Compile Include="GameManagementModule\Messages\GameManagementMessageHandler.cs" />
+    <Compile Include="GameManagementModule\GameManagementModule.cs" />
+    <Compile Include="GameManagementModule\Messages\GameMessageFactory.cs" />
+    <Compile Include="GameStorageModule\Data\GameWrapper.cs" />
+    <Compile Include="GameStorageModule\Data\StorageConnection.cs" />
+    <Compile Include="GameStorageModule\Messages\GameStorageMessageFactory.cs" />
+    <Compile Include="GameStorageModule\Messages\GameStorageClientMessageType.cs" />
+    <Compile Include="GameStorageModule\Data\GameStorageData.cs" />
+    <Compile Include="GameStorageModule\GameStorageLogic.cs" />
+    <Compile Include="GameStorageModule\Messages\GameStorageMessageHandler.cs" />
+    <Compile Include="GameStorageModule\GameStorageModule.cs" />
+    <Compile Include="Game Interface\IServerGameBackend.cs" />
+    <Compile Include="GameManagementModule\Interface\IGameControl.cs" />
+    <Compile Include="GameManagementModule\Interface\IGameManagement.cs" />
+    <Compile Include="GameManagementModule\Interface\IGameMessenger.cs" />
+    <Compile Include="LobbyModule\Data\LobbyBackendWrapper.cs" />
+    <Compile Include="LobbyModule\Data\ISetting.cs" />
+    <Compile Include="LobbyModule\Data\Lobby.cs" />
+    <Compile Include="Game Interface\IServerGameFactory.cs" />
+    <Compile Include="LobbyModule\Data\LobbyConnection.cs" />
+    <Compile Include="LobbyModule\Interface\ILobbyLogic.cs" />
+    <Compile Include="GameStorageModule\Interface\IGameModuleStorage.cs" />
+    <Compile Include="LobbyModule\Messages\LobbyError.cs" />
+    <Compile Include="LobbyModule\Messages\LobbyMessageFactory.cs" />
+    <Compile Include="LobbyModule\Logic\LobbyStateException.cs" />
+    <Compile Include="LobbyModule\Messages\LobbyServerMessageType.cs" />
+    <Compile Include="LobbyModule\Data\LobbyState.cs" />
+    <Compile Include="LobbyModule\Messages\LobbyClientMessageType.cs" />
+    <Compile Include="LobbyModule\LobbyModule.cs" />
+    <Compile Include="LobbyModule\Data\LobbyModuleData.cs" />
+    <Compile Include="LobbyModule\Logic\LobbyLogic.cs" />
+    <Compile Include="LobbyModule\Messages\LobbyModuleMessageHandler.cs" />
+    <Compile Include="LobbyModule\Data\LobbySettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatModule\ChatModule.csproj">
+      <Project>{a47fc1e0-0229-4c88-865e-6fb0b0009869}</Project>
+      <Name>ChatModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClientModule\PlayerModule.csproj">
+      <Project>{674D52C2-8840-4282-8CA6-8B66AD18F8E2}</Project>
+      <Name>PlayerModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiagnosticsInterfaces\DiagnosticsInterfaces.csproj">
+      <Project>{F1DBA5DB-7839-4B6C-989E-3E134F850BB3}</Project>
+      <Name>DiagnosticsInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServerData\SharedData.csproj">
+      <Project>{CD1EEDC5-7B80-40FA-89A5-398CC98165A5}</Project>
+      <Name>SharedData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServer\ServerArchitecture.csproj">
+      <Project>{85122CB3-0D89-40B1-AD4B-63F5716EA5DF}</Project>
+      <Name>ServerArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameSettingsUtilities\GameSettingsUtilities.csproj">
+      <Project>{d9a6b0d9-12ca-42f8-8d70-ca2758db97c0}</Project>
+      <Name>GameSettingsUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogUtils\LogUtils.csproj">
+      <Project>{6E745A30-6B84-4877-9CA0-31530AF4CD55}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageUtility\MessageUtilities.csproj">
+      <Project>{e489de0b-217f-4e8f-a7bd-424ad845ca88}</Project>
+      <Name>MessageUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerImplementation\BasicImplementation.csproj">
+      <Project>{A6A9B15D-8C3D-4767-9E11-A03D5A8CA9AD}</Project>
+      <Name>BasicImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextInterfaceModule\TextInterfaceModule.csproj">
+      <Project>{89F78A6E-87E8-440D-8B7A-58087FBA7C1A}</Project>
+      <Name>TextInterfaceModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TextParser\TextParserUtils.csproj">
+      <Project>{7B417A40-3C37-4846-9E66-521BA82B79CA}</Project>
+      <Name>TextParserUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

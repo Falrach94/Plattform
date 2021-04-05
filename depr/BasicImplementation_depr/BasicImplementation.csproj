@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6A9B15D-8C3D-4767-9E11-A03D5A8CA9AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ServerImplementation</RootNamespace>
+    <AssemblyName>ServerImplementation</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'LinuxTEst|AnyCPU'">
+    <OutputPath>bin\LinuxTEst\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Const.cs" />
+    <Compile Include="Framework\Module Template\ModuleState.cs" />
+    <Compile Include="Framework\Module Template\StateSynchronizer.cs" />
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="TaskManager.cs" />
+    <Compile Include="Utils\IndexPool.cs" />
+    <None Include="Misc\App.config" />
+    <Compile Include="ConnectionModule\Connection.cs" />
+    <Compile Include="ConnectionModule\ConnectionData.cs" />
+    <Compile Include="ConnectionModule\Documentation Connection Handling.cs" />
+    <None Include="Misc\ClassDiagram.cd" />
+    <None Include="Misc\packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicServer.cs" />
+    <Compile Include="ConnectionModule\GeneralMessageFactory.cs" />
+    <Compile Include="ConnectionModule\ConnectionLogic.cs" />
+    <Compile Include="ConnectionModule\ConnectionModule.cs" />
+    <Compile Include="Exceptions\InvalidConnectionStateException.cs" />
+    <Compile Include="Exceptions\NotSynchronizedException.cs" />
+    <Compile Include="Logging\ServerLogTarget.cs" />
+    <Compile Include="Framework\Module Template\IManagedModuleMessageHandler.cs" />
+    <Compile Include="Framework\Module Template\IManagedModuleLogic.cs" />
+    <Compile Include="Framework\Module Template\ModuleData.cs" />
+    <Compile Include="Framework\Module Template\DefaultMessageHandler.cs" />
+    <Compile Include="Framework\Module Template\ModuleMessageHandler.cs" />
+    <Compile Include="Messenger.cs" />
+    <Compile Include="Framework\FrameworkManager.cs" />
+    <Compile Include="Framework\Module Template\Module.cs" />
+    <Compile Include="Framework\Module Template\ModuleLogic.cs" />
+    <Compile Include="Network\IEndpointHandler.cs" />
+    <Compile Include="Network\Endpoint.cs" />
+    <Compile Include="Network\EndpointManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiagnosticsInterfaces\DiagnosticsInterfaces.csproj">
+      <Project>{F1DBA5DB-7839-4B6C-989E-3E134F850BB3}</Project>
+      <Name>DiagnosticsInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServerData\SharedData.csproj">
+      <Project>{cd1eedc5-7b80-40fa-89a5-398cc98165a5}</Project>
+      <Name>SharedData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameServer\ServerArchitecture.csproj">
+      <Project>{85122cb3-0d89-40b1-ad4b-63f5716ea5df}</Project>
+      <Name>ServerArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogUtils\LogUtils.csproj">
+      <Project>{6e745a30-6b84-4877-9ca0-31530af4cd55}</Project>
+      <Name>LogUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageUtility\MessageUtilities.csproj">
+      <Project>{E489DE0B-217F-4E8F-A7BD-424AD845CA88}</Project>
+      <Name>MessageUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetworkUtils\NetworkUtils.csproj">
+      <Project>{61b9f2c5-e699-4862-949b-050ea7b5b5d3}</Project>
+      <Name>NetworkUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SyncUtils\SyncUtils.csproj">
+      <Project>{044933c8-8eef-43fa-81a6-d51e92a82fc3}</Project>
+      <Name>SyncUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.5\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="messages.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

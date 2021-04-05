@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManagement.GameManagementModule.GameSettings">
+    <Position X="6" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameManagementModule\Data\GameSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GameManagement.IGameBackend">
+    <Position X="3.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAAAAAAQAAAABAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\IGameBackend.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameManagement">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>GameManagementModule\Interface\IGameManagementLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameResult">
+    <Position X="8.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Game Interface\IGameResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameMessenger">
+    <Position X="6" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameManagementModule\Interface\IGameMessenger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameControl">
+    <Position X="3.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameManagementModule\Interface\IGameControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

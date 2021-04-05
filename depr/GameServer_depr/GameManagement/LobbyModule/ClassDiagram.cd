@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManagement.LobbyM.Data.Lobby">
+    <Position X="8.25" Y="2.5" Width="2.25" />
+    <Members>
+      <Field Name="_index" Hidden="true" />
+      <Field Name="IndexPool" Hidden="true" />
+      <Method Name="Lobby" Hidden="true" />
+      <Property Name="Mutex" Hidden="true" />
+      <Method Name="ToDiagnosticLongString" Hidden="true" />
+      <Method Name="ToDiagnosticShortString" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACCAAAEAAAAAAEAAAggAQAAAAgCAgAACAgACBQAgA=</HashCode>
+      <FileName>LobbyModule\Data\Lobby.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LobbyState" />
+      <Property Name="LobbySettings" />
+      <Property Name="Backend" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameManagement.LobbyM.Data.LobbyConnection">
+    <Position X="1.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAEEAAAAAAAAAAAIAAAAICAAAAAQAAA=</HashCode>
+      <FileName>LobbyModule\Data\LobbyConnection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameManagement.LobbyM.Data.LobbySettings">
+    <Position X="11.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>LobbyModule\Data\LobbySettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManagement.LobbyM.Logic.LobbyLogic">
+    <Position X="6" Y="7.25" Width="2.5" />
+    <Members>
+      <Method Name="HandleDisconnect" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="PlayerStorage_PlayerRemoved" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="SetGameMode" Hidden="true" />
+      <Method Name="SetLobbyOption" Hidden="true" />
+      <Method Name="SetPlayerReady" Hidden="true" />
+      <Method Name="StartGame" Hidden="true" />
+      <Method Name="SynchronizeConnection" Hidden="true" />
+      <Method Name="UpdateConnection" Hidden="true" />
+      <Method Name="UpdateLobbyConnections" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAAwAAAIAIABQkACkCAAAAgBAEAEAAYAAEAAQgCAAA=</HashCode>
+      <FileName>LobbyModule\Logic\LobbyLogic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameManagement.LobbyM.Data.LobbyBackendWrapper">
+    <Position X="4.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAgAgAAAAAAA=</HashCode>
+      <FileName>LobbyModule\Data\LobbyBackendWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GameManagement.LobbyM.ILobbyLogic">
+    <Position X="1.75" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAgAAAAAIAAAAAAECAAAAgBAEAEAAAAAAAAAgCAAA=</HashCode>
+      <FileName>LobbyModule\Interface\ILobbyLogic.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameFactory">
+    <Position X="3.25" Y="14" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\IGameFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ChatModule.IChatControl">
+    <Position X="0.5" Y="14" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="GameManagement.LobbyM.Data.LobbyState">
+    <Position X="11.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAQAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LobbyModule\Data\LobbyState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utilities\LogUtils\LogUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\MessageUtils\MessageUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\NetworkUtils\NetworkUtils.csproj" />
+    <ProjectReference Include="..\..\Utilities\SyncUtils\SyncUtils.csproj" />
+    <ProjectReference Include="..\DiagnosticsUtils\DiagnosticsUtils.csproj" />
+    <ProjectReference Include="..\ServerArchitecture\ServerArchitecture.csproj" />
+  </ItemGroup>
+
+</Project>

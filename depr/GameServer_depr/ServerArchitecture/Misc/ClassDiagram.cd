@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Generic server model&#xD;&#xA;&#xD;&#xA;basic server implementation supports connecting clients&#xD;&#xA;&#xD;&#xA;additional functionalities can be added by implementing and adding modules">
+    <Position X="26.83" Y="3.687" Height="1.992" Width="3.575" />
+  </Comment>
+  <Class Name="GameServer.Server">
+    <Position X="8.25" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAQICAAAAABAAAIAAAAAMAIAAASAAAAA=</HashCode>
+      <FileName>Server.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_network" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="GameServer.IMessenger">
+    <Position X="12" Y="16" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAQAAAABAAAA=</HashCode>
+      <FileName>Message Handling\IMessenger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameServer.IModuleMessageHandler">
+    <Position X="17.25" Y="16" Width="3.25" />
+    <AssociationLine Name="Broadcaster" Type="GameServer.IMessenger" FixedToPoint="true">
+      <Path>
+        <Point X="17.25" Y="16.438" />
+        <Point X="15.25" Y="16.438" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Data" Type="GameServer.IModuleData" FixedToPoint="true">
+      <Path>
+        <Point X="20.5" Y="16.562" />
+        <Point X="21.417" Y="16.562" Type="JumpStart" />
+        <Point X="21.583" Y="16.562" Type="JumpEnd" />
+        <Point X="22.25" Y="16.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAEEBAAACAAAAAAAAA=</HashCode>
+      <FileName>Framework\Module\IModuleMessageHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Broadcaster" />
+      <Property Name="Logic" />
+      <Property Name="Data" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IModuleControl">
+    <Position X="2.5" Y="3.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Framework\IModuleControl.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameServer.IServer">
+    <Position X="13.75" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAACAAAAAAAAAAAAAAAIAAAAAMAAAAAQAAAAA=</HashCode>
+      <FileName>IServer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Framework" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IModuleData">
+    <Position X="22.25" Y="16" Width="3.25" />
+    <AssociationLine Name="DataGuard" Type="GameServer.IDataGuard" FixedFromPoint="true">
+      <Path>
+        <Point X="24.375" Y="16" />
+        <Point X="24.375" Y="11.796" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Module\IModuleData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataGuard" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IModule">
+    <Position X="19.75" Y="13.75" Width="3.5" />
+    <AssociationLine Name="Logic" Type="GameServer.IModuleLogic" FixedFromPoint="true">
+      <Path>
+        <Point X="21.5" Y="14.853" />
+        <Point X="21.5" Y="18.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="MessageHandler" Type="GameServer.IModuleMessageHandler" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="20" Y="14.853" />
+        <Point X="20" Y="16" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Data" Type="GameServer.IModuleData" FixedFromPoint="true">
+      <Path>
+        <Point X="23" Y="14.853" />
+        <Point X="23" Y="16" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAQAAABAAACAAAAAAAAA=</HashCode>
+      <FileName>Framework\Module\IModule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Logic" />
+      <Property Name="MessageHandler" />
+      <Property Name="Data" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IMessageParser">
+    <Position X="12" Y="3.25" Width="3.5" />
+    <AssociationLine Name="Connections" Type="GameServer.IConnectionStorage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="4.133" />
+        <Point X="15.875" Y="4.133" />
+        <Point X="15.875" Y="4.312" />
+        <Point X="22.75" Y="4.312" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Modules" Type="GameServer.IModuleControl" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="3.502" />
+        <Point X="4.25" Y="3.502" />
+        <Point X="4.25" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAQAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Message Handling\IMessageParser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Connections" />
+      <Property Name="Modules" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IModuleLogic">
+    <Position X="19.75" Y="18.75" Width="3.5" />
+    <AssociationLine Name="Data" Type="GameServer.IModuleData" FixedToPoint="true">
+      <Path>
+        <Point X="22.938" Y="18.75" />
+        <Point X="22.938" Y="17.296" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIBAAAQAAAAAAAAAAAAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>Framework\Module\IModuleLogic.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Data" />
+      <Property Name="Broadcaster" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IEndpointManager">
+    <Position X="7.5" Y="4" Width="2.5" />
+    <AssociationLine Name="MessageParser" Type="GameServer.IMessageParser" FixedFromPoint="true">
+      <Path>
+        <Point X="10" Y="4.188" />
+        <Point X="12" Y="4.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAABAAAAEAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Network Management\IEndpointManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MessageParser" />
+      <Property Name="ConnectionHandler" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IDataGuard">
+    <Position X="22.75" Y="10.5" Width="3.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="GameServer.IModuleFramework">
+    <Position X="13.75" Y="10.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAABAAAAAAAAAIAAAQAABAAEAAAAAAAQAAAQA=</HashCode>
+      <FileName>Framework\IModuleFramework.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Broadcaster" />
+      <Property Name="DataGuard" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IConnectionHandler">
+    <Position X="12" Y="5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAABAAAAAAAAAAABAQAAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>Connection Management\IConnectionHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Modules" />
+      <Property Name="Data" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameServer.IConnectionStorage">
+    <Position X="22.75" Y="4.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Connection Management\IConnectionStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

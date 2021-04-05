@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManagement.GameMode">
+    <Position X="3.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAQAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\GameMode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LobbyModule.GameLobby">
+    <Position X="1.5" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameLobby.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LobbyModule.GameManagementModule.Data.GameSettings">
+    <Position X="1.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\GameSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="GameManagement.IGameFactory">
+    <Position X="6.75" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQABAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\IGameFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameLobby">
+    <Position X="1.5" Y="3.75" Width="1.75" />
+    <AssociationLine Name="GameSettings" Type="LobbyModule.GameManagementModule.Data.GameSettings">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.148" Y="0.16" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAEAAAAAAAAIAAAgA=</HashCode>
+      <FileName>Game Interface\IGameLobby.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GameSettings" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="GameManagement.IGameBackend">
+    <Position X="6.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAAAAAAQAAAABAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Game Interface\IGameBackend.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.IGameResult">
+    <Position X="9.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Game Interface\IGameResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

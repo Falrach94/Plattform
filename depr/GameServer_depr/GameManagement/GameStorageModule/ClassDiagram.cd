@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="GameManagement.IGameModule">
+    <Position X="4.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>GameStorageModule\Interface\IGameModule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="GameManagement.Interface.IGameModuleStorage">
+    <Position X="1" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameStorageModule\Interface\IGameModuleStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
