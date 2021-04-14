@@ -17,7 +17,6 @@ namespace ServerKernel.Control
     public class ControlModule : ModuleControl, IServerControl
     {
         private readonly IModuleManager _moduleManager;
-        private readonly ConnectionProtocol _procotol = new();
 
         private INetworkControl _network;
 
@@ -43,8 +42,7 @@ namespace ServerKernel.Control
 
         protected override void DefineModule(ModuleBuilder builder)
         {
-            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionProtocolHandler>(_procotol, PatternUtils.Version.Create(1, 0, 0)),
-                                          new ModuleInterfaceWrapper<IServerControl>(this, PatternUtils.Version.Create(1, 0, 0)));
+            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IServerControl>(this, PatternUtils.Version.Create(1, 0, 0)));
 
             builder.SetDependencies(new InterfaceInfo(typeof(INetworkControl), PatternUtils.Version.Create(1,0)));
         }

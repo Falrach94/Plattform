@@ -11,8 +11,8 @@ namespace ServerKernel.Protocol
 {
     public class ConnectionProtocol : IConnectionProtocolHandler
     {
-        public BroadcastMessenger Messenger { get; set; } 
-
+        public IConnectionControl ConnectionControl { get; set; }
+        public BroadcastMessenger Messenger { get; set; }
 
         public PatternUtils.Version Version { get; }
 

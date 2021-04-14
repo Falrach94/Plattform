@@ -3,6 +3,7 @@ using PatternUtils.Module_Framework;
 using PatternUtils.Module_Framework.Data;
 using PatternUtils.Module_Framework.Data.builder;
 using PatternUtils.Module_Framework.Impl;
+using PatternUtils.Module_Framework.Impl.WeakDependency;
 using ServerKernel.Connections.Manager;
 using ServerKernel.Control;
 using ServerUtils;
@@ -33,9 +34,8 @@ namespace ServerKernel.Connections
                                     new InterfaceInfo(typeof(IEndpointControl), PatternUtils.Version.Create(1, 0)),
                                     new InterfaceInfo(typeof(IEndpointObservable), PatternUtils.Version.Create(1, 0)));
             builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionControl>(_connectionManager, PatternUtils.Version.Create(1, 0, 0)));
-            builder.SetManagerInterfaces(new ManagerInterface<IConnectionProcessor>(PatternUtils.Version.Create(1, 0, 0),
-                                                                                PatternUtils.Version.Create(1, 0, 0),
-                                                                                RegisterProcessor, UnregisterProcessor));
+            builder.SetManagerInterfaces(new ManagerInterface<IConnectionProcessor>(new(1, 0, 0), new(1, 0, 0), RegisterProcessor, UnregisterProcessor),
+                                         new WeakDependencyProvider<IConnectionControl>(_connectionManager, new(1, 0, 0)));
         }
 
         private void RegisterProcessor(IConnectionProcessor processor)

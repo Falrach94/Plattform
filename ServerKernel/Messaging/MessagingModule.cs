@@ -6,6 +6,7 @@ using PatternUtils.Module_Framework;
 using PatternUtils.Module_Framework.Data;
 using PatternUtils.Module_Framework.Data.builder;
 using PatternUtils.Module_Framework.Impl;
+using PatternUtils.Module_Framework.Impl.WeakDependency;
 using SyncUtils;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,10 @@ namespace ServerKernel.Messaging
             builder.SetDependencies(new InterfaceInfo(typeof(IMessageErrorProtocol), PatternUtils.Version.Create(1, 0)),
                                     new InterfaceInfo(typeof(IRawMessageReceiver), PatternUtils.Version.Create(1, 0)));
             builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<BroadcastMessenger>(_messenger, PatternUtils.Version.Create(1, 0, 0)));
-            builder.SetManagerInterfaces(new ManagerInterface<IMessageHandler>( PatternUtils.Version.Create(1, 0, 0), 
-                                                                                PatternUtils.Version.Create(1, 0, 0),
-                                                                                RegisterNewMessageHandler, UnregisterMessageHandler));
+            builder.SetManagerInterfaces(new ManagerInterface<IMessageHandler>( new(1,0,0), new(1, 0, 0), RegisterNewMessageHandler, UnregisterMessageHandler),
+                                         new WeakDependencyProvider<BroadcastMessenger>(_messenger, new(1,0,0)));
+           
+
         }
 
         private async Task HandleMessageError(MessageProcessingError error)

@@ -60,16 +60,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ServerKernel.Protocol.ProtocolModule">
-    <Position X="26.5" Y="7.75" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>EAACAAAAAAAEAAAAAAgAAAAAAAAAAAAAAQQAIAAAAAA=</HashCode>
-      <FileName>Protocol\ProtocolModule.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_procotoll" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="ServerKernel.Protocol.ConnectionProtocol">
     <Position X="26.5" Y="3.75" Width="2.5" />
     <TypeIdentifier>
@@ -96,6 +86,13 @@
     <Position X="18.5" Y="3.75" Width="2.25" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ServerKernel.Protocol.ProtocolModule">
+    <Position X="26.5" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>kgACAAAAAAAEAAAAAAgAAAAAAABgAAAAAQAAIAAAAAA=</HashCode>
+      <FileName>Protocol\ProtocolModule.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="ServerKernel.Network.INetworkControl">
     <Position X="8.5" Y="8" Width="1.5" />

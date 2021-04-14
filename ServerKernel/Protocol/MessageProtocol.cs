@@ -1,4 +1,6 @@
 ﻿using MessageUtils;
+using MessageUtils.Messenger;
+using ServerKernel.Connections.Manager;
 using ServerKernel.Messaging;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,9 @@ namespace ServerKernel.Protocol
 {
     public class MessageProtocol : IMessageErrorProtocol
     {
+        public IConnectionControl ConnectionControl { get; set; }
+        public BroadcastMessenger Messenger { get; set; }
+
         public Task HandleMessageErrorAsync(MessageProcessingError error)
         {
             return Task.CompletedTask;

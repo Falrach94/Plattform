@@ -8,6 +8,7 @@ using SyncUtils;
 using System;
 using System.Threading.Tasks;
 using ServerKernel.Messaging;
+using ServerKernel.Protocol;
 
 namespace ServerKernel
 {
@@ -16,6 +17,7 @@ namespace ServerKernel
     {
         public IModuleManager ModuleManager { get; } = new ModuleManager();
 
+        private readonly ProtocolModule _protocolModule = new();
         private readonly ConnectionModule _connectionModule = new();
         private readonly ControlModule _controlModule;
         private readonly NetworkModule _networkModule = new();
@@ -25,6 +27,7 @@ namespace ServerKernel
 
         private async Task InitializeFrameworkAsync()
         {
+            await ModuleManager.RegisterModuleAsync(_protocolModule.Header);
             await ModuleManager.RegisterModuleAsync(_networkModule.Header);
             await ModuleManager.RegisterModuleAsync(_controlModule.Header);
             await ModuleManager.RegisterModuleAsync(_connectionModule.Header);

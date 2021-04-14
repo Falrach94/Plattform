@@ -32,13 +32,20 @@ namespace ServerTests.Server
 
 
             // assert modules network, connections, control, messaging are loaded
-            CollectionAssert.AreEquivalent(new[] { "Connections", "Messaging", "Control", "Network"}, 
+            CollectionAssert.AreEquivalent(new[] { "Connections", "Messaging", "Control", "Network", "Protocol"}, 
                                             server.ModuleManager.Modules.Select(m => m.Info.Name).ToArray());
 
             var networkModule = server.ModuleManager.GetModuleByName("Network");
             var controlModule = server.ModuleManager.GetModuleByName("Control");
             var messagingModule = server.ModuleManager.GetModuleByName("Messaging");
             var connectionsModule = server.ModuleManager.GetModuleByName("Connections");
+            var protocolModule = server.ModuleManager.GetModuleByName("Protocol");
+
+            Assert.IsNotNull(networkModule);
+            Assert.IsNotNull(controlModule);
+            Assert.IsNotNull(messagingModule);
+            Assert.IsNotNull(connectionsModule);
+            Assert.IsNotNull(protocolModule);
 
             var network = TestUtils.AssertTask(server.ModuleManager.GetInterfaceAsync<INetworkControl>(null));
 
