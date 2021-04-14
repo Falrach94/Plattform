@@ -20,15 +20,19 @@ namespace ServerKernel.Connections
         private readonly Dictionary<IConnectionProcessor, IDisposable> _processorDic = new();
         private readonly ConnectionManager _connectionManager = new();
 
+     //   private IConnectionProtocolHandler _protocol;
+        //private IEndpointObservable _endpoints;
+
         public ConnectionModule() : base("Connections", PatternUtils.Version.Create(1,0,0))
         {
         }
 
         protected override void DefineModule(ModuleBuilder builder)
         {
-            builder.SetDependencies(new InterfaceInfo(typeof(ConnectionProtocol), PatternUtils.Version.Create(1, 0)),
-                                    new InterfaceInfo(typeof(IEndpointManager), PatternUtils.Version.Create(1, 0)));
-            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionManager>(_connectionManager, PatternUtils.Version.Create(1, 0, 0)));
+            builder.SetDependencies(new InterfaceInfo(typeof(IConnectionProtocolHandler), PatternUtils.Version.Create(1, 0)),
+                                    new InterfaceInfo(typeof(IEndpointControl), PatternUtils.Version.Create(1, 0)),
+                                    new InterfaceInfo(typeof(IEndpointObservable), PatternUtils.Version.Create(1, 0)));
+            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionControl>(_connectionManager, PatternUtils.Version.Create(1, 0, 0)));
             builder.SetManagerInterfaces(new ManagerInterface<IConnectionProcessor>(PatternUtils.Version.Create(1, 0, 0),
                                                                                 PatternUtils.Version.Create(1, 0, 0),
                                                                                 RegisterProcessor, UnregisterProcessor));
@@ -36,17 +40,21 @@ namespace ServerKernel.Connections
 
         private void RegisterProcessor(IConnectionProcessor processor)
         {
-            _processorDic[processor].Dispose();
+            _processorDic.Add(processor, _connectionManager.RegisterConnectionProcessor(processor));
         }
         private void UnregisterProcessor(IConnectionProcessor processor)
         {
-            _processorDic.Add(processor, _connectionManager.RegisterConnectionProcessor(processor));
+            _processorDic[processor].Dispose();
         }
 
 
-        protected override Task InitializeAsync(IInterfaceProvider interfaceProvider, LockToken token)
+        protected override async Task InitializeAsync(IInterfaceProvider interfaceProvider, LockToken token)
         {
-            return Task.CompletedTask;
+            _connectionManager.Endpoints = await interfaceProvider.GetInterfaceAsync<IEndpointObservable>(token); ;
+
+            _connectionManager.EndpointControl = await interfaceProvider.GetInterfaceAsync<IEndpointControl>(token); ;
+
+            _connectionManager.ProtocolHandler = await interfaceProvider.GetInterfaceAsync<IConnectionProtocolHandler>(token);
         }
 
         protected override Task ResetAsync()
@@ -66,6 +74,10 @@ namespace ServerKernel.Connections
 
         protected override Task UninitializeAsync()
         {
+            _connectionManager.Endpoints = null;
+            _connectionManager.EndpointControl = null;
+            _connectionManager.ProtocolHandler = null;
+
             return Task.CompletedTask;
         }
     }

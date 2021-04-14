@@ -6,7 +6,7 @@
   <Comment CommentText="Basic Modules:&#xD;&#xA;&#xD;&#xA;Network&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IRawMessageReceiver -&gt; RawMessageBlock&#xD;&#xA;	- IEndpointManager -&gt; EndpointConnectionChanged&#xD;&#xA;&#xD;&#xA;Messaging:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IRawMessageReceiver &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IMessageHandler&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- BroadcastMessenger&#xD;&#xA;&#xD;&#xA;Protocoll&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	-IConnectionProtocolHandler&#xD;&#xA;&#xD;&#xA;Connections:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IEndpointManager &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IConnectionProcessor&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IConnectionManager&#xD;&#xA;&#xD;&#xA;">
     <Position X="0.715" Y="0.5" Height="5.083" Width="5.148" />
   </Comment>
-  <Class Name="ServerArchitecture.Framework.NetworkModule">
+  <Class Name="ServerKernel.Network.NetworkModule">
     <Position X="10.75" Y="7.75" Width="2.25" />
     <Members>
       <Method Name="DefineModule" Hidden="true" />
@@ -19,7 +19,6 @@
       <FileName>Network\NetworkModule.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_endpointManager" />
       <Field Name="_listener" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
@@ -32,7 +31,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ServerArchitecture.MessagingModule">
+  <Class Name="ServerKernel.Messaging.MessagingModule">
     <Position X="17" Y="7.75" Width="3" />
     <TypeIdentifier>
       <HashCode>EAACAAAAAAAEAAAAAAgAgAAAIAAAgAAAAQAAIAAAAQQ=</HashCode>
@@ -43,20 +42,20 @@
       <Field Name="_messenger" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="ServerArchitecture.Connections.ConnectionModule">
+  <Class Name="ServerKernel.Connections.ConnectionModule">
     <Position X="21.75" Y="7.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>EEACAAAAAAAEAAAAAAgAAABAAAAgAAAAEQAAIAAAAAA=</HashCode>
+      <HashCode>EEACAAAAAAAEAAAQAAgAAABAAAAgAAAEEQAAIAAAAAA=</HashCode>
       <FileName>Connections\ConnectionModule.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_connectionManager" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="ServerArchitecture.ConnectionManager" Collapsed="true">
+  <Class Name="ServerKernel.Connections.Manager.ConnectionManager" Collapsed="true">
     <Position X="21.5" Y="3.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AJAAIAIAAAAAAACAAAgAgAAAAAAAEAAAQAgCYAAABAA=</HashCode>
+      <HashCode>AJAAIAAAAAAAAAKAAEgAAAAAAAEAEAAEQAgCQCAABAA=</HashCode>
       <FileName>Connections\manager\ConnectionManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -98,7 +97,7 @@
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ServerArchitecture.Network.INetwork">
+  <Interface Name="ServerKernel.Network.INetwork">
     <Position X="8.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAA=</HashCode>

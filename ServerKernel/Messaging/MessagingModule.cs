@@ -12,29 +12,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 
 namespace ServerKernel.Messaging
 {
     public class MessagingModule : ModuleControl
     {
-        private readonly MessageProcessor _messageProcessor;
-        private readonly BroadcastMessenger _messenger;
-
+        private IMessageErrorProtocol _errorProtocol;
+        private MessageProcessor _messageProcessor;
+        private BroadcastMessenger _messenger;
+        private ActionBlock<MessageProcessingError> _messageErrorBlock;
+        private IDisposable _messageErrorUnsubscriber;
         private readonly Dictionary<IMessageHandler, IDisposable> _handlerDic = new();
 
         public MessagingModule() : base("Messaging", PatternUtils.Version.Create(1,0,0))
         {
-            _messageProcessor = new();
-            _messenger = new(_messageProcessor);
+        }
+
+        protected override void Initialize(object[] data)
+        {
+            _messageErrorBlock = new(HandleMessageError);
         }
 
         protected override void DefineModule(ModuleBuilder builder)
         {
-            builder.SetDependencies(new InterfaceInfo(typeof(IRawMessageReceiver), PatternUtils.Version.Create(1, 0)));
-            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IBroadcastMessenger>(_messenger, PatternUtils.Version.Create(1, 0, 0)));
+            _messageProcessor = new();
+            _messenger = new(_messageProcessor);
+
+            builder.SetDependencies(new InterfaceInfo(typeof(IMessageErrorProtocol), PatternUtils.Version.Create(1, 0)),
+                                    new InterfaceInfo(typeof(IRawMessageReceiver), PatternUtils.Version.Create(1, 0)));
+            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<BroadcastMessenger>(_messenger, PatternUtils.Version.Create(1, 0, 0)));
             builder.SetManagerInterfaces(new ManagerInterface<IMessageHandler>( PatternUtils.Version.Create(1, 0, 0), 
                                                                                 PatternUtils.Version.Create(1, 0, 0),
                                                                                 RegisterNewMessageHandler, UnregisterMessageHandler));
+        }
+
+        private async Task HandleMessageError(MessageProcessingError error)
+        {
+            if (_errorProtocol != null)
+            {
+                await _errorProtocol.HandleMessageErrorAsync(error);
+            }
         }
 
         private void UnregisterMessageHandler(IMessageHandler handler)
@@ -51,8 +69,12 @@ namespace ServerKernel.Messaging
 
         protected override async Task InitializeAsync(IInterfaceProvider interfaceProvider, LockToken token)
         {
+            _errorProtocol = await interfaceProvider.GetInterfaceAsync<IMessageErrorProtocol>(token);
             var messageReceiver = await interfaceProvider.GetInterfaceAsync<IRawMessageReceiver>(token);
             _messageProcessor.SetMessageReceiver(messageReceiver);
+            _messageErrorUnsubscriber = _messageProcessor.ErrorBlock.LinkTo(_messageErrorBlock);
+
+
         }
 
         protected override Task ResetAsync()
@@ -72,7 +94,10 @@ namespace ServerKernel.Messaging
 
         protected override Task UninitializeAsync()
         {
+            _errorProtocol = null;
             _messageProcessor.SetMessageReceiver(null);
+            _messageErrorUnsubscriber?.Dispose();
+            _messageErrorUnsubscriber = null;
             return Task.CompletedTask;
         }
     }

@@ -1,4 +1,5 @@
-﻿using NetworkUtils.Socket;
+﻿using NetworkUtils.Endpoint;
+using NetworkUtils.Socket;
 using PatternUtils;
 using PatternUtils.Ids;
 using ServerKernel.Data_Objects;
@@ -7,6 +8,7 @@ using ServerUtils.Endpoint_Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
@@ -15,74 +17,72 @@ namespace ServerKernel.Connections.Manager
     /// <summary>
     /// Consumes endpoint state changes and handles connection creation/destruction accordingly.
     /// </summary>
-    /// <typeparam name="TStorage"></typeparam>
-    public class ConnectionManager : IConnectionManager, IUnsubscribeable<IConnectionProcessor>
+    public class ConnectionManager : IConnectionControl, IUnsubscribeable<IConnectionProcessor>
     {
-        public IEndpointManager EndpointManager 
-        { 
-            get => _endpointManager;
-            set 
+        public IEndpointObservable Endpoints
+        {
+            get => _endpoints;
+            set
             {
-                if(value is null)
+                if (_endpoints != null)
                 {
-                    throw new ArgumentNullException();
+                    _endpoints.EndpointConnectedHandler = null;
+                    _endpoints.EndpointDisconnectedHandler = null;
                 }
-                if(_endpointManager != null)
+                _endpoints = value;
+                if (_endpoints != null)
                 {
-                    _endpointManager.EndpointConnectionChanged -= EndpointStateChanged;
+                    _endpoints.EndpointConnectedHandler = EndpointConnected;
+                    _endpoints.EndpointDisconnectedHandler = EndpointDisconnected;
                 }
-
-                _endpointManager = value;
-                _endpointManager.EndpointConnectionChanged += EndpointStateChanged;
             }
         }
+        public IEndpointControl EndpointControl { get; set; }
         public IConnectionProtocolHandler ProtocolHandler { get; set; }
-        public List<Connection> Connections => EndpointManager.ConnectedEndpoints.Select(ep => (Connection)ep.ConnectionData).ToList();
+        public List<Connection> Connections => Endpoints.ConnectedEndpoints.Select(ep => (Connection)ep.ConnectionData).ToList();
 
+        private readonly SemaphoreSlim _sem = new(1,1);
 
         private readonly List<Connection> _connections = new();
         private readonly List<IConnectionProcessor> _connectionProcessors = new();
         private readonly IdPool _idPool = new();
 
-        
-        private IEndpointManager _endpointManager;
+
+        private IEndpointObservable _endpoints;
 
 
 
-
-        private void EndpointStateChanged(object sender, EndpointChangedEventArgs e)
+        private async Task EndpointConnected(IEndpoint ep)
         {
-            
-            switch(e.Type)
-            {
-                case EndpointEventType.Connect:
-                    {
-                        var connection = new Connection();
-                        connection.Endpoint = e.Endpoint;
-                        e.Endpoint.ConnectionData = connection;
-                    
-                        connection.IdReturner = _idPool.GetNextId(out int id);
-                        connection.Id = id;
+            var connection = new Connection();
+            ep.ConnectionData = connection;
 
-                        SetAndHandleConnectionStateAsync(connection, ConnectionState.Connecting).Wait();
-                        _connections.Add(connection);
+            connection.Endpoint = ep;
+            connection.IdReturner = _idPool.GetNextId(out int id);
+            connection.Id = id;
 
-                        break;
-                    }
-                case EndpointEventType.Disconnect:
-                    {
-                        var connection = (Connection)e.Endpoint.ConnectionData;
+            await SetAndHandleConnectionStateAsync(connection, ConnectionState.Connecting);
 
-                        _connections.Remove(connection);
-                        SetAndHandleConnectionStateAsync(connection, ConnectionState.Disconnected).Wait();
-                        connection.Dispose();
-
-                        break;
-                    }
-                default:
-                    throw new NotImplementedException();
-            }
+            await _sem.WaitAsync();
+            _connections.Add(connection);
+            _sem.Release();
         }
+        private async Task EndpointDisconnected(IEndpoint ep, bool remoteDisconnect)
+        {
+            var connection = (Connection)ep.ConnectionData;
+
+
+            await _sem.WaitAsync();
+            if (!_connections.Remove(connection))
+            {
+                throw new ArgumentException("Connection not found!");
+            }
+            _sem.Release();
+
+            await SetAndHandleConnectionStateAsync(connection, ConnectionState.Disconnected);
+            connection.Dispose();
+        }
+
         protected async Task SetAndHandleConnectionStateAsync(Connection connection, ConnectionState state)
         {
             connection.State = state;
@@ -149,7 +149,7 @@ namespace ServerKernel.Connections.Manager
         public async Task CloseConnectionAsync(Connection connection, DisconnectReason reason, string message)
         {
             await ProtocolHandler.ClosingConnectionAsync(connection, reason, message);
-            await _endpointManager.DisconnectEndpointAsync(connection.Endpoint);
+            await EndpointControl.DisconnectEndpointAsync(connection.Endpoint);
         }
 
         public IDisposable RegisterConnectionProcessor(IConnectionProcessor processor)

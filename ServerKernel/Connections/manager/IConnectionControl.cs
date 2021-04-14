@@ -9,7 +9,7 @@ namespace ServerKernel.Connections.Manager
     /// <summary>
     /// Provides functions for connection management.
     /// </summary>
-    public interface IConnectionManager 
+    public interface IConnectionControl 
     {
         Task CloseConnectionAsync(Connection client, DisconnectReason reason, string message);
         Task CloseAllConnectionsAsync();

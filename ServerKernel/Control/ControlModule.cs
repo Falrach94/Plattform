@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SyncUtils;
+using ServerKernel.Connections.Manager;
 
 namespace ServerKernel.Control
 {
@@ -42,7 +43,7 @@ namespace ServerKernel.Control
 
         protected override void DefineModule(ModuleBuilder builder)
         {
-            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<ConnectionProtocol>(_procotol, PatternUtils.Version.Create(1, 0, 0)),
+            builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionProtocolHandler>(_procotol, PatternUtils.Version.Create(1, 0, 0)),
                                           new ModuleInterfaceWrapper<IServerControl>(this, PatternUtils.Version.Create(1, 0, 0)));
 
             builder.SetDependencies(new InterfaceInfo(typeof(INetwork), PatternUtils.Version.Create(1,0)));

@@ -24,5 +24,10 @@ namespace ServerKernel.Data_Objects
             }
         }
 
+        public override string ToString()
+        {
+            return $"({Id}:{State})";
+        }
+
     }
 }

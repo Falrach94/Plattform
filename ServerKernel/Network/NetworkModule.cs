@@ -20,12 +20,13 @@ namespace ServerKernel.Network
     {
         const int DEFAULT_PORT = 6666;
 
-        private TcpClientListener _listener = new ();
+        private readonly TcpClientListener _listener = new ();
 
-        private EndpointManager _endpointManager = new();
+        private readonly EndpointManager _endpointManager = new();
 
         public NetworkModule() : base("Network", PatternUtils.Version.Create(1,0,0))
         {
+            _listener.ConnectingClientBlock.LinkTo(_endpointManager.IncomingClientBlock);
         }
 
         public int TargetPort { get; set; } = DEFAULT_PORT;
@@ -35,7 +36,8 @@ namespace ServerKernel.Network
         protected override void DefineModule(ModuleBuilder builder)
         {
             builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IRawMessageReceiver>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
-                                          new ModuleInterfaceWrapper<IEndpointManager>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
+                                          new ModuleInterfaceWrapper<IEndpointObservable>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
+                                          new ModuleInterfaceWrapper<IEndpointControl>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
                                           new ModuleInterfaceWrapper<INetwork>(this, PatternUtils.Version.Create(1, 0, 0)));
         }
 
