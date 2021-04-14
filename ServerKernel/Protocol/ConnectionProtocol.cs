@@ -1,4 +1,5 @@
-﻿using ServerKernel.Connections.Manager;
+﻿using MessageUtils.Messenger;
+using ServerKernel.Connections.Manager;
 using ServerKernel.Data_Objects;
 using System;
 using System.Collections.Generic;
@@ -6,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerKernel.Control
+namespace ServerKernel.Protocol
 {
     public class ConnectionProtocol : IConnectionProtocolHandler
     {
+        public BroadcastMessenger Messenger { get; set; } 
+
 
         public PatternUtils.Version Version { get; }
 
@@ -20,27 +23,27 @@ namespace ServerKernel.Control
 
         public Task ClosingConnectionAsync(Connection connection, DisconnectReason reason, string message)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task DisconnectedConnectionAsync(Connection connection)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task EstablishedConnectionAsync(Connection connection)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task NewConnectionAsync(Connection connection)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task SynchronizingConnectionAsync(Connection connection)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

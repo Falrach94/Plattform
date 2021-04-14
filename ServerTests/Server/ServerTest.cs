@@ -40,7 +40,7 @@ namespace ServerTests.Server
             var messagingModule = server.ModuleManager.GetModuleByName("Messaging");
             var connectionsModule = server.ModuleManager.GetModuleByName("Connections");
 
-            var network = TestUtils.AssertTask(server.ModuleManager.GetInterfaceAsync<INetwork>(null));
+            var network = TestUtils.AssertTask(server.ModuleManager.GetInterfaceAsync<INetworkControl>(null));
 
             Assert.AreEqual(ModuleState.Stopped, networkModule.State);
             Assert.AreEqual(ModuleState.Stopped, controlModule.State);

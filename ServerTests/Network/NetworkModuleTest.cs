@@ -28,7 +28,7 @@ namespace ServerTests.Network
             public IRawMessageReceiver RawMessageReceiver { get; private set; }
             public IEndpointControl EndpointControl { get; private set; }
             public IEndpointObservable EndpointObservable { get; private set; }
-            public INetwork Network { get; private set; }
+            public INetworkControl Network { get; private set; }
 
             public NetworkConsumerMockModule() : base("Mock", PatternUtils.Version.Create(1))
             {
@@ -38,7 +38,7 @@ namespace ServerTests.Network
             {
                 builder.SetDependencies(new InterfaceInfo(typeof(IRawMessageReceiver), PatternUtils.Version.Create(1)),
                                         new InterfaceInfo(typeof(IEndpointControl), PatternUtils.Version.Create(1)),
-                                        new InterfaceInfo(typeof(INetwork), PatternUtils.Version.Create(1)),
+                                        new InterfaceInfo(typeof(INetworkControl), PatternUtils.Version.Create(1)),
                                         new InterfaceInfo(typeof(IEndpointObservable), PatternUtils.Version.Create(1)));
             }
 
@@ -47,7 +47,7 @@ namespace ServerTests.Network
                 RawMessageReceiver = await interfaceProvider.GetInterfaceAsync<IRawMessageReceiver>(token);
                 EndpointControl = await interfaceProvider.GetInterfaceAsync<IEndpointControl>(token);
                 EndpointObservable = await interfaceProvider.GetInterfaceAsync<IEndpointObservable>(token);
-                Network = await interfaceProvider.GetInterfaceAsync<INetwork>(token);
+                Network = await interfaceProvider.GetInterfaceAsync<INetworkControl>(token);
             }
 
             protected override Task ResetAsync()
@@ -119,7 +119,7 @@ namespace ServerTests.Network
             var msgReceiver = TestUtils.AssertTask(manager.GetInterfaceAsync<IRawMessageReceiver>(null));
             var epControl = TestUtils.AssertTask(manager.GetInterfaceAsync<IEndpointControl>(null));
             var epObservable = TestUtils.AssertTask(manager.GetInterfaceAsync<IEndpointObservable>(null));
-            var network = TestUtils.AssertTask(manager.GetInterfaceAsync<INetwork>(null));
+            var network = TestUtils.AssertTask(manager.GetInterfaceAsync<INetworkControl>(null));
 
 
             Assert.IsNotNull(msgReceiver);

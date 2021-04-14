@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Comment CommentText="Generic server model&#xD;&#xA;&#xD;&#xA;basic server implementation supports connecting clients&#xD;&#xA;&#xD;&#xA;additional functionalities can be added by implementing and adding modules">
-    <Position X="1.458" Y="6.259" Height="1.992" Width="3.575" />
+    <Position X="4.739" Y="9.019" Height="1.992" Width="3.575" />
   </Comment>
-  <Comment CommentText="Basic Modules:&#xD;&#xA;&#xD;&#xA;Network&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IRawMessageReceiver -&gt; RawMessageBlock&#xD;&#xA;	- IEndpointManager -&gt; EndpointConnectionChanged&#xD;&#xA;&#xD;&#xA;Messaging:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IRawMessageReceiver &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IMessageHandler&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- BroadcastMessenger&#xD;&#xA;&#xD;&#xA;Protocoll&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	-IConnectionProtocolHandler&#xD;&#xA;&#xD;&#xA;Connections:&#xD;&#xA;- DependentInterfaces:&#xD;&#xA;	- IEndpointManager &#xD;&#xA;- ManagerInterfaces&#xD;&#xA;	-&gt; IConnectionProcessor&#xD;&#xA;- WrappedInterfaces:&#xD;&#xA;	- IConnectionManager&#xD;&#xA;&#xD;&#xA;">
-    <Position X="0.715" Y="0.5" Height="5.083" Width="5.148" />
+  <Comment CommentText="Basic Modules:&#xD;&#xA;&#xD;&#xA;Network&#xD;&#xA;- Provides&#xD;&#xA;	- IRawMessageReceiver&#xD;&#xA;	- IEndpointObservable&#xD;&#xA;	- IEndpointControl&#xD;&#xA;	- INetworkControl&#xD;&#xA;&#xD;&#xA;Protocol&#xD;&#xA;- Implements (managed interfaces)&#xD;&#xA;	- MessengerUser&#xD;&#xA;	- ConnectionControlUser&#xD;&#xA;- Provides	&#xD;&#xA;	- IMessageErrorProtocol&#xD;&#xA;	- IConnectionProtocolHandler&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Messaging:&#xD;&#xA;- Depends on:&#xD;&#xA;	- IRawMessageReceiver &#xD;&#xA;	- IMessageErrorProtocol&#xD;&#xA;- Manages&#xD;&#xA;	- IMessageHandler&#xD;&#xA;	- IMessengerUser&#xD;&#xA;- Provides&#xD;&#xA;	- BroadcastMessenger&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Connections:&#xD;&#xA;- Depends on:&#xD;&#xA;	- IConnectionProtocolHandler&#xD;&#xA;	- IEndpointControl&#xD;&#xA;	- IEndpointObservable&#xD;&#xA;- Manages&#xD;&#xA;	- IConnectionProcessor&#xD;&#xA;	- IConnectionControlUser&#xD;&#xA;- Provides&#xD;&#xA;	- IConnectionControl&#xD;&#xA;&#xD;&#xA;">
+    <Position X="0.715" Y="0.5" Height="7.666" Width="5.148" />
   </Comment>
   <Class Name="ServerKernel.Network.NetworkModule">
     <Position X="10.75" Y="7.75" Width="2.25" />
@@ -34,7 +34,7 @@
   <Class Name="ServerKernel.Messaging.MessagingModule">
     <Position X="17" Y="7.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>EAACAAAAAAAEAAAAAAgAgAAAIAAAgAAAAQAAIAAAAQQ=</HashCode>
+      <HashCode>EAACAAQAAAAEAQAAgAgAgAAAIEAAhAAAAQAAIAAAAQQ=</HashCode>
       <FileName>Messaging\MessagingModule.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -45,7 +45,7 @@
   <Class Name="ServerKernel.Connections.ConnectionModule">
     <Position X="21.75" Y="7.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>EEACAAAAAAAEAAAQAAgAAABAAAAgAAAEEQAAIAAAAAA=</HashCode>
+      <HashCode>EEACAAAAAAAEAAAAAAgAAABAAAAgAAAAEQAAIAAAAAA=</HashCode>
       <FileName>Connections\ConnectionModule.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -55,7 +55,7 @@
   <Class Name="ServerKernel.Connections.Manager.ConnectionManager" Collapsed="true">
     <Position X="21.5" Y="3.75" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AJAAIAAAAAAAAAKAAEgAAAAAAAEAEAAEQAgCQCAABAA=</HashCode>
+      <HashCode>AJAAAAAAAAgAAAKAAEgAAAAAAAEAUAAEQAwCQCAABAA=</HashCode>
       <FileName>Connections\manager\ConnectionManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -97,11 +97,11 @@
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="ServerKernel.Network.INetwork">
+  <Interface Name="ServerKernel.Network.INetworkControl">
     <Position X="8.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Network\INetwork.cs</FileName>
+      <FileName>Network\INetworkControl.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

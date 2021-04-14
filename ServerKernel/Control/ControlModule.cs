@@ -19,7 +19,7 @@ namespace ServerKernel.Control
         private readonly IModuleManager _moduleManager;
         private readonly ConnectionProtocol _procotol = new();
 
-        private INetwork _network;
+        private INetworkControl _network;
 
         public ControlModule(IModuleManager manager) : base("Control", PatternUtils.Version.Create(1,0,0))
         {
@@ -46,12 +46,12 @@ namespace ServerKernel.Control
             builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IConnectionProtocolHandler>(_procotol, PatternUtils.Version.Create(1, 0, 0)),
                                           new ModuleInterfaceWrapper<IServerControl>(this, PatternUtils.Version.Create(1, 0, 0)));
 
-            builder.SetDependencies(new InterfaceInfo(typeof(INetwork), PatternUtils.Version.Create(1,0)));
+            builder.SetDependencies(new InterfaceInfo(typeof(INetworkControl), PatternUtils.Version.Create(1,0)));
         }
 
         protected override async Task InitializeAsync(IInterfaceProvider interfaceProvider, LockToken token)
         {
-            _network = await interfaceProvider.GetInterfaceAsync<INetwork>(token);
+            _network = await interfaceProvider.GetInterfaceAsync<INetworkControl>(token);
         }
 
         protected override Task ResetAsync()

@@ -16,7 +16,7 @@ using System.Threading.Tasks.Dataflow;
 
 namespace ServerKernel.Network
 {
-    public class NetworkModule : ModuleControl, INetwork
+    public class NetworkModule : ModuleControl, INetworkControl
     {
         const int DEFAULT_PORT = 6666;
 
@@ -38,7 +38,7 @@ namespace ServerKernel.Network
             builder.SetProvidedInterfaces(new ModuleInterfaceWrapper<IRawMessageReceiver>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
                                           new ModuleInterfaceWrapper<IEndpointObservable>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
                                           new ModuleInterfaceWrapper<IEndpointControl>(_endpointManager, PatternUtils.Version.Create(1, 0, 0)),
-                                          new ModuleInterfaceWrapper<INetwork>(this, PatternUtils.Version.Create(1, 0, 0)));
+                                          new ModuleInterfaceWrapper<INetworkControl>(this, PatternUtils.Version.Create(1, 0, 0)));
         }
 
         protected override Task InitializeAsync(IInterfaceProvider interfaceProvider, LockToken providerLockToken)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServerKernel.Network
 {
-    public interface INetwork
+    public interface INetworkControl
     {
         /// <summary>
         /// Module will try to start on this port
